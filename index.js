@@ -7,16 +7,16 @@ let humanScore = 0;
 
 /*This Function Will Generate A Random Number Between 1, 2 Or 3  */
 function getComputerChoice(){
-    computerNumber += Math.floor(((Math.random() * 10) + 2) / 4 );
-    /* console.log(computerNumber); 
-    if (computerNumber <= 1){
+    computerNumber = Math.floor(Math.random() * 3) ;
+     console.log(computerNumber); 
+    if (computerNumber <= 0){
          console.log("Rock"); 
-    } else if (computerNumber <= 2){
+    } else if (computerNumber <= 1){
          console.log("Paper"); 
-    } else {
+    } else if (computerNumber <= 2){
          console.log("Scissors"); 
     }
-    */
+    
     return computerNumber;
 }
 
@@ -25,20 +25,22 @@ function getComputerChoice(){
 function getHumanChoice(){
     
 
-    console.log("Choose one of the following numbers");
-    console.log("1 = Rock | 2 = Paper | 3 = Scissors");
+    console.log("Choose one of the following : ");
+    console.log(" Rock | Paper | Scissors");
 
-    humanNumber = window.prompt("Your number please");
+    humanInput = window.prompt("Your choice please");
+    let humanChoise = humanInput.toLowerCase();
+
     /*ask for human input*/
-    if (humanNumber == 1){
+    if (humanChoise === "rock"){
         console.log(" You choosed Rock");
-        return humanNumber = 1;
-    } else if (humanNumber == 2){
+        return humanNumber = 0;
+    } else if (humanChoise === "paper"){
          console.log("You choosed Paper");
-        return humanNumber = 2;
-    } else if (humanNumber == 3){
+        return humanNumber = 1;
+    } else if (humanChoise === "scissors"){
         console.log("You choosed Scissors");
-        return humanNumber = 3;
+        return humanNumber = 2;
     } else {
         console.log("Invalid choice");
     }
@@ -51,37 +53,41 @@ function playRound(){
     computerNumber = getComputerChoice();
     humanNumber = getHumanChoice();
     
-    if (computerNumber <= 1 && humanNumber === 1){
-        console.log("Draw ! (PC)Rock vs Rock");
-    } else if (computerNumber <= 1 && humanNumber == 2){
-        console.log("The Player Wins ! (PC)Rock vs Paper");
+    if (computerNumber <= 0 && humanNumber === 0 ){
+        console.log("Draw ! (PC) Rock vs (YOU) Rock");
+
+    } else if (computerNumber <= 0 && humanNumber == 1){
+        console.log("The Player Wins ! (PC) Rock vs (YOU) Paper");
         humanScore++;
-    } else if (computerNumber <= 1 && humanNumber == 3){
-        console.log("The Computer Wins ! (PC)Rock vs Scissors");
+    } else if (computerNumber <= 0 && humanNumber == 2){
+        console.log("The Computer Wins ! (PC) Rock vs (YOU) Scissors");
         computerScore++;
-    } else if (computerNumber == 2 && humanNumber == 1){
-        console.log("The Computer Wins ! (PC)Paper vs Rock");
+    } else if (computerNumber == 1 && humanNumber == 0){
+        console.log("The Computer Wins ! (PC) Paper vs (YOU) Rock");
         computerScore++;
-    } else if (computerNumber == 2 && humanNumber == 2){
-        console.log("Draw ! (PC)Paper vs Paper");
-    } else if (computerNumber == 2 && humanNumber == 3){
-        console.log("The Player Wins ! (PC)Paper vs Scissors");
+    } else if (computerNumber == 1 && humanNumber == 1){
+        console.log("Draw ! (PC) Paper vs (YOU) Paper");
+
+    } else if (computerNumber == 1 && humanNumber == 2){
+        console.log("The Player Wins ! (PC) Paper vs (YOU) Scissors");
         humanScore++;
-    } else if (computerNumber == 3 && humanNumber == 1){
-        console.log("The Player Wins ! (PC)Scissors vs Rock");
+    } else if (computerNumber >= 2 && humanNumber == 0){
+        console.log("The Player Wins ! (PC) Scissors vs (YOU) Rock");
         humanScore++;
-    } else if (computerNumber == 3 && humanNumber == 2){
-        console.log("The Computer Wins ! (PC)Scissors vs Paper");
+    } else if (computerNumber >= 2 && humanNumber == 1){
+        console.log("The Computer Wins ! (PC) Scissors vs (YOU) Paper");
         computerScore++;
-    } else if (computerNumber == 3 && humanNumber == 3){
-        console.log("Draw ! (PC)Scissors vs Scissors");
+    } else if (computerNumber >= 2 && humanNumber == 2){
+        console.log("Draw ! (PC) Scissors vs (YOU) Scissors");
+
     }
+    console.log("PC : " + computerScore + " Human : " + humanScore);
 }
 
 
 /* This Functions Plays As Many Rounds As It Was Called With*/
 function playGame(rounds){
-    round = 0;
+    let round = 0;
     humanScore = 0;
     computerScore = 0;
 
@@ -96,4 +102,4 @@ function playGame(rounds){
 
 /*Calling Only This Function in Main | Other Functions Nested In Eachother */
 
-playGame(3);
+playGame(5);
