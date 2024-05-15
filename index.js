@@ -48,40 +48,40 @@ function getHumanChoice(){
 
 
 /*This Function Plays One Round */
-function playRound(){
+function playRound(humanNumber){
     
     computerNumber = getComputerChoice();
-    humanNumber = getHumanChoice();
+    //humanNumber = getHumanChoice();
     
     if (computerNumber <= 0 && humanNumber === 0 ){
-        console.log("Draw ! (PC) Rock vs (YOU) Rock");
+        div.innerText +=("Draw ! (PC) Rock vs (YOU) Rock\n");
 
     } else if (computerNumber <= 0 && humanNumber == 1){
-        console.log("The Player Wins ! (PC) Rock vs (YOU) Paper");
+        div.innerText +=("The Player Wins ! (PC) Rock vs (YOU) Paper\n");
         humanScore++;
     } else if (computerNumber <= 0 && humanNumber == 2){
-        console.log("The Computer Wins ! (PC) Rock vs (YOU) Scissors");
+        div.innerText +=("The Computer Wins ! (PC) Rock vs (YOU) Scissors\n");
         computerScore++;
     } else if (computerNumber == 1 && humanNumber == 0){
-        console.log("The Computer Wins ! (PC) Paper vs (YOU) Rock");
+        div.innerText +=("The Computer Wins ! (PC) Paper vs (YOU) Rock\n");
         computerScore++;
     } else if (computerNumber == 1 && humanNumber == 1){
-        console.log("Draw ! (PC) Paper vs (YOU) Paper");
+        div.innerText +=("Draw ! (PC) Paper vs (YOU) Paper\n");
 
     } else if (computerNumber == 1 && humanNumber == 2){
-        console.log("The Player Wins ! (PC) Paper vs (YOU) Scissors");
+        div.innerText +=("The Player Wins ! (PC) Paper vs (YOU) Scissors\n");
         humanScore++;
     } else if (computerNumber >= 2 && humanNumber == 0){
-        console.log("The Player Wins ! (PC) Scissors vs (YOU) Rock");
+        div.innerText +=("The Player Wins ! (PC) Scissors vs (YOU) Rock\n");
         humanScore++;
     } else if (computerNumber >= 2 && humanNumber == 1){
-        console.log("The Computer Wins ! (PC) Scissors vs (YOU) Paper");
+        div.innerText +=("The Computer Wins ! (PC) Scissors vs (YOU) Paper\n");
         computerScore++;
     } else if (computerNumber >= 2 && humanNumber == 2){
-        console.log("Draw ! (PC) Scissors vs (YOU) Scissors");
+        div.innerText +=("Draw ! (PC) Scissors vs (YOU) Scissors\n");
 
     }
-    console.log("PC : " + computerScore + " Human : " + humanScore);
+    div.innerText +=("PC : " + computerScore + " Human : " + humanScore + "\n");
 }
 
 
@@ -96,10 +96,77 @@ function playGame(rounds){
         round++;
     }
     
-    console.log("Final Score : ");
-    console.log("PC : " + computerScore + " Human : " + humanScore);
+    div.innerText +=("Final Score : ");
+    div.innerText +=("PC : " + computerScore + " Human : " + humanScore);
 }
 
 /*Calling Only This Function in Main | Other Functions Nested In Eachother */
 
-playGame(5);
+// playGame(5);
+function ichZeigeWas(){
+    console.log("Test")
+}
+
+const rockBtn = document.querySelector("#rockButton");
+const paperBtn = document.querySelector("#paperButton");
+const scissorsBtn = document.querySelector("#scissorsButton");
+const div = document.querySelector("#textContainer");
+
+
+rockBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    div.innerText = "";
+    humanNumber = 0;
+    playRound(humanNumber);
+    if (humanScore === 5){
+        div.innerText += ("Human Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    } else if(computerScore === 5){
+        div.innerText += ("Computer Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    };
+
+});
+
+
+paperBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    div.innerText = "";
+    humanNumber = 1;
+    playRound(humanNumber);
+    if (humanScore === 5){
+        div.innerText += ("Human Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    } else if(computerScore === 5){
+        div.innerText += ("Computer Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    }
+
+});
+
+scissorsBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    div.innerText = "";
+    humanNumber = 2;
+    playRound(humanNumber);
+    if (humanScore === 5){
+        div.innerText += ("Human Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    } else if(computerScore === 5){
+        div.innerText += ("Computer Wins!");
+        humanScore = 0;
+        computerScore = 0;
+        
+    }
+
+});
